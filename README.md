@@ -1,6 +1,6 @@
-# KritzBitz — Better Websites
+# Kritz Bitz Website
 
-Static marketing site built with Next.js, deployed to Cloudflare Pages with a Cloudflare Worker for contact form handling.
+Static site built with Next.js, deployed to Cloudflare Pages with a Cloudflare Worker for contact form handling.
 
 ## Stack
 
