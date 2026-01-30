@@ -3,7 +3,6 @@
  */
 export const workerUrl = process.env.NEXT_PUBLIC_WORKER_URL;
 
-console.log(workerUrl)
 
 /*
  * Post the contact form to Cloudflare Worker.
@@ -14,6 +13,12 @@ export const postInquiry = async (data) => {
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" },
   });
+
+    console.log("test")
+    console.log(workerUrl)
+    console.log(process.env.NEXT_PUBLIC_WORKER_URL)
+    console.log(process.env)
+    console.log("test")
   if (!response.ok) {
     const error = new Error("Request failed");
     error.status = response.status;
