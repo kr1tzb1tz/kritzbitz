@@ -36,8 +36,8 @@ const services = [
   {
     number: "05",
     title: "Ongoing Support",
-    description: "Unlimited edits, 24/7 support, and proactive maintenance—no extra cost.",
-    details: "We handle all updates, edits, and support requests so you can focus on your business. Our ongoing support includes unlimited edits with priority queues based on your plan, 24/7 technical support, proactive security monitoring, regular backups, and performance maintenance. We're your dedicated web team, ensuring your site stays current, secure, and optimized at all times.",
+    description: "Unlimited edits and proactive maintenance—no extra cost.",
+    details: "We handle all updates, edits, and support requests so you can focus on your business. Our ongoing support includes unlimited edits with priority queues based on your plan, proactive security monitoring, regular backups, and performance maintenance. We're your dedicated web team, ensuring your site stays current, secure, and optimized at all times.",
     link: "#contact",
     linkText: "Get Support"
   },

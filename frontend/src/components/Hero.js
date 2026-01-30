@@ -1,9 +1,108 @@
 "use client"
 import { useState, useEffect, useRef } from "react";
 
+function useParticles(canvasRef) {
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let animationId;
+    let particles = [];
+    const PARTICLE_COUNT = 60;
+    const LINK_DISTANCE = 120;
+    const PARTICLE_COLOR = "rgba(255,255,255,";
+
+    function resize() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    function createParticle() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        opacity: Math.random() * 0.4 + 0.1,
+      };
+    }
+
+    function init() {
+      resize();
+      particles = [];
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push(createParticle());
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw links
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < LINK_DISTANCE) {
+            const alpha = (1 - dist / LINK_DISTANCE) * 0.15;
+            ctx.strokeStyle = PARTICLE_COLOR + alpha + ")";
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw particles
+      for (const p of particles) {
+        ctx.fillStyle = PARTICLE_COLOR + p.opacity + ")";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function update() {
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      }
+    }
+
+    function loop() {
+      update();
+      draw();
+      animationId = requestAnimationFrame(loop);
+    }
+
+    init();
+    loop();
+
+    const onResize = () => {
+      resize();
+    };
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [canvasRef]);
+}
+
 export default function Hero() {
-  const [videoError, setVideoError] = useState(false);
+  //const [videoError, setVideoError] = useState(false);
+  const [videoError, setVideoError] = useState(true);
   const videoRef = useRef(null);
+  const particlesCanvasRef = useRef(null);
+
+  useParticles(particlesCanvasRef);
   
   // Initialize random positions directly (no need for useEffect)
   const [randomPositions] = useState(() => {
@@ -34,8 +133,10 @@ export default function Hero() {
 
   const handleVideoLoad = () => {
     console.log('Video loaded successfully - 13.4MB binary.mov');
-    setVideoError(false)
+    //setVideoError(false)
+    setVideoError(true)
   };
+
 
   return (
     <>
@@ -72,15 +173,6 @@ export default function Hero() {
               }}>
                 01001011 01010010 01001001 01010100 01011010 00100000 01000010 01001001 01010100 01011010
               </div>
-              {/* Binary text: "The gorilla's name is Dankey Kong" */}
-              <div className="absolute text-xs font-mono opacity-20 animate-pulse" style={{
-                color: '#ff0060',
-                animationDelay: '1s',
-                top: `${randomPositions[1]?.top || 20}%`,
-                right: `${randomPositions[1]?.right || 10}%`
-              }}>
-                01010100 01101000 01100101 00100000 01100111 01101111 01110010 01101001 01101100 01101100 01100001 00100111 01110011 00100000 01101110 01100001 01101101 01100101 00100000 01101001 01110011 00100000 01000100 01100001 01101110 01101011 01100101 01111001 00100000 01001011 01101111 01101110 01100111
-              </div>
               {/* Binary text: "RIP Harambe" */}
               <div className="absolute text-xs font-mono opacity-20 animate-pulse" style={{
                 color: '#b708fe',
@@ -115,7 +207,13 @@ export default function Hero() {
         
         {/* Video overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50 z-10"></div>
-        
+
+        {/* Particles background */}
+        <canvas
+          ref={particlesCanvasRef}
+          className="absolute inset-0 w-full h-full z-[15] pointer-events-none"
+        />
+
         {/* Hero Content */}
         <div className="parallax-content relative z-20">
           {/* Logo */}

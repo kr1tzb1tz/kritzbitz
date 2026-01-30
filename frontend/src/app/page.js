@@ -10,11 +10,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Hero />
+      {/*
       <WhatWeDo />
       <Subscriptions />
       <Projects />
       <Contact />
       <Footer />
+      */}
     </div>
   );
 }

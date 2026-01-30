@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from "../components/Navbar";
+//import Navbar from "../components/Navbar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "KritzBitz - Better Websites",
-  description: "KritzBitz delivers custom, high-performance websites built with clean code—not templates. Better web design, better development, better results.",
+  title: "Kritz Bitz",
+  description: "01000011 01101000 01110010 01101001 01110011 01110100 00100000 01101001 01110011 00100000 01001011 01101001 01101110 01100111",
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         <style>{`html { scroll-behavior: smooth; }`}</style>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <Navbar />
+          {/*<Navbar>*/}
           {children}
       </body>
     </html>
