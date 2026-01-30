@@ -7,11 +7,6 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Don't show navbar on blocked page
-  if (pathname === '/blocked') {
-    return null;
-  }
-
   // Close menu when overlay is clicked
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) setOpen(false);

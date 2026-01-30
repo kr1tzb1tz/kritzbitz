@@ -3,6 +3,8 @@
  */
 export const workerUrl = process.env.NEXT_PUBLIC_WORKER_URL;
 
+console.log(workerUrl)
+
 /*
  * Post the contact form to Cloudflare Worker.
  */
