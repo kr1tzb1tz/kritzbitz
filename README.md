@@ -44,7 +44,7 @@ pnpm run dev
 
 Create `worker/.dev.vars` for local secrets:
 ```
-PUSHOVER_API_TOKEN=your_token_here
+PUSHOVER_API_TOKEN=your_token_here 
 PUSHOVER_USER_KEYS=key1,key2,key3
 ```
 
