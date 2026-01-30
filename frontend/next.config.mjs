@@ -7,11 +7,11 @@ const nextConfig = {
     unoptimized: true,
   },
   // Remove console logs in production builds
-  //compiler: {
-    //removeConsole: process.env.NODE_ENV === 'production' ? {
-      //exclude: ['error', 'warn'], // Keep error and warn logs
-    //} : false,
-  //},
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'], // Keep error and warn logs
+    } : false,
+  },
 };
 
 export default nextConfig;

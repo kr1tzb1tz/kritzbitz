@@ -36,7 +36,6 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-      console.log("hello")
     try {
       const res = await postInquiry(formData);
       if (res.success) {

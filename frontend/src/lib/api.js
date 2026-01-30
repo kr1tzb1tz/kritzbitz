@@ -9,12 +9,6 @@ export const workerUrl = process.env.NEXT_PUBLIC_WORKER_URL;
  */
 export const postInquiry = async (data) => {
 
-    console.log("test")
-    console.log(workerUrl)
-    console.log(process.env.NEXT_PUBLIC_WORKER_URL)
-    console.log(process.env)
-    console.log("test")
-
   const response = await fetch(`${workerUrl}/inquiry`, {
     method: "POST",
     body: JSON.stringify(data),
