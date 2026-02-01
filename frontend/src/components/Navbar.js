@@ -54,7 +54,7 @@ export default function Navbar() {
         <div className="hidden md:flex gap-10 items-center">
           <button onClick={() => scrollToSection('what-we-do')} className="nav-link">WHAT WE DO</button>
           <button onClick={() => scrollToSection('subscriptions')} className="nav-link">PRICING</button>
-          <button onClick={() => scrollToSection('projects')} className="nav-link">PROJECTS</button>
+          <button onClick={() => scrollToSection('projects')} className="nav-link">FEATURED WORK</button>
           <button onClick={() => scrollToSection('contact')} className="nav-link">CONTACT</button>
         </div>
         {/* Hamburger/X Toggle Button */}
@@ -126,7 +126,7 @@ export default function Navbar() {
               onClick={() => scrollToSection('projects')}
               className="block w-full text-lg font-bold text-white active:text-white active:bg-pink-500 px-4 py-4 rounded-lg mb-3 transition-all duration-200" 
             >
-              Projects
+              Featured Work
             </button>
             <button 
               onClick={() => scrollToSection('contact')}

@@ -47,7 +47,7 @@ export default function Subscriptions() {
             Pricing
           </h2>
           <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light">
-            Comprehensive web solutions for your business. Includes unlimited edits and 24/7 support with no upfront costs.
+            Comprehensive web solutions for your business. Includes unlimited edits with no upfront costs.
           </p>
         </div>
         
@@ -114,7 +114,7 @@ export default function Subscriptions() {
         {/* Custom Features Section - Moved Below Card */}
         <div className="flex items-center justify-center mt-4 md:mt-8">
           <p className="text-base text-center italic" style={{ color: 'var(--teal)' }}>
-            Need more than the essentials? We can build exactly what you need.
+            Need more than the essentials? We can build what you need.
           </p>
         </div>
       </div>
